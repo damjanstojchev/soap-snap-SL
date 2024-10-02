@@ -379,5 +379,11 @@
             <artifactId>httpclient</artifactId>
             <version>4.5.13</version>
         </dependency>
+        <!-- JSON PARSER DEPENDENCY -->
+        <dependency>
+            <groupId>org.json</groupId>
+            <artifactId>json</artifactId>
+            <version>20211205</version>
+        </dependency>
     </dependencies>
 </project>
