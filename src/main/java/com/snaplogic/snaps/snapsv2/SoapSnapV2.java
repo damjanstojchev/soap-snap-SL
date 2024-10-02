@@ -12,8 +12,6 @@ import org.w3c.dom.NodeList;
 
 import java.util.*;
 
-import static org.bouncycastle.util.Properties.getPropertyValue;
-
 @General(title = "Soap Snap v2", purpose = "Soap Requests", author = "Baselinked")
 @Inputs(min = 0, max = 1, accepts = {ViewType.DOCUMENT})
 @Outputs(min = 1, max = 1, offers = {ViewType.DOCUMENT})
