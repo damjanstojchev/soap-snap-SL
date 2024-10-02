@@ -261,7 +261,8 @@
             com.snaplogic.snaps.IOsnap,
             com.snaplogic.snaps.SoapSnapCore,
             com.snaplogic.snaps.soapv1.SoapSnapV1,
-            com.snaplogic.snaps.snapsv2.SoapSnapV2
+            com.snaplogic.snaps.snapsv2.SoapSnapV2,
+            com.snaplogic.snaps.snapsv3.SoapSnapV3
         </snap.classes>
         <!-- This identifies the classes which represent the actual Accounts
             (and become accessible on the Snaplex/JCC after deployment).
