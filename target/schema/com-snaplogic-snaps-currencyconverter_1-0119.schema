@@ -1,5 +1,5 @@
 {
-  "id" : "com-snaplogic-snaps-schemaexample_1-0093",
+  "id" : "com-snaplogic-snaps-currencyconverter_1-0119",
   "type" : "object",
   "description" : "A schema for a snap",
   "description" : "The common schema for snaps.",
@@ -70,6 +70,12 @@
               "extends" : {
                 "$ref" : "com-snaplogic-snap_2#propertyextensions"
               }
+            },
+            "inputFile" : {
+              "required" : true,
+              "extends" : {
+                "$ref" : "com-snaplogic-snap_2#propertyextensions"
+              }
             }
           }
         }
@@ -92,6 +98,18 @@
                 "value" : {
                   "default" : "Validate & Execute",
                   "enum" : [ "Validate & Execute", "Execute only", "Disabled" ],
+                  "format" : "",
+                  "type" : "string"
+                }
+              }
+            },
+            "inputFile" : {
+              "extends" : {
+                "$ref" : "com-snaplogic-snap_2#instancepropertyextensions"
+              },
+              "properties" : {
+                "value" : {
+                  "expression" : true,
                   "format" : "",
                   "type" : "string"
                 }
@@ -163,7 +181,7 @@
     "info" : {
       "title" : {
         "ui_row_count" : 1,
-        "value" : "View Schema",
+        "value" : "Currency Converter",
         "info_text" : "Class title shown for the Snap",
         "sensitivity_level" : "public",
         "label_text" : "Title",
@@ -173,7 +191,7 @@
       },
       "purpose" : {
         "ui_row_count" : 3,
-        "value" : "Demonstrates view schema definition",
+        "value" : "Demonstrates dependency injection",
         "info_text" : "The description of the Snap",
         "sensitivity_level" : "public",
         "label_text" : "Purpose",
@@ -194,7 +212,7 @@
       },
       "snap_pack_build_number" : {
         "ui_row_count" : 1,
-        "value" : "0093",
+        "value" : "0119",
         "info_text" : "The build number of the Snap pack to which the Snap belongs.",
         "sensitivity_level" : "public",
         "label_text" : "Snap-pack build-number",
@@ -204,7 +222,7 @@
       },
       "snap_pack_fqid" : {
         "ui_row_count" : 1,
-        "value" : "demosnapsdevelopment-snap-1-0093.zip",
+        "value" : "demosnapsdevelopment-snap-1-0119.zip",
         "info_text" : "The fully qualified id of Snap pack to which the Snap belongs.",
         "sensitivity_level" : "public",
         "label_text" : "Snap-pack fqid",
@@ -254,7 +272,7 @@
       },
       "snap_class_name" : {
         "ui_row_count" : 1,
-        "value" : "com.snaplogic.snaps.SchemaExample",
+        "value" : "com.snaplogic.snaps.CurrencyConverter",
         "info_text" : "The name of the Snap class.",
         "sensitivity_level" : "public",
         "label_text" : "Snap class name",
@@ -284,7 +302,7 @@
       },
       "class_fqid" : {
         "ui_row_count" : 2,
-        "value" : "com-snaplogic-snaps-schemaexample_1-0093",
+        "value" : "com-snaplogic-snaps-currencyconverter_1-0119",
         "info_text" : "The unique identifier of the Snap",
         "sensitivity_level" : "public",
         "label_text" : "Class FQID",
@@ -339,17 +357,25 @@
         "info_text" : "Determines if the Snap should fail, continue (write to error view) or ignore errors",
         "sensitivity_level" : "public",
         "label_text" : "Error behavior",
-        "priority_index" : 10,
+        "priority_index" : 20,
         "display_type" : "visible",
         "anchor" : false
       }
     },
-    "category" : "transform",
+    "category" : "read",
     "settings" : {
       "execution_mode" : {
         "info_text" : "Controls whether or not a Snap executes",
         "label_text" : "Snap execution",
         "priority_index" : 1010,
+        "anchor" : false
+      },
+      "inputFile" : {
+        "info_text" : "File containing foreign exchange rates",
+        "schema_awareness_type" : "accepts_schema",
+        "label_text" : "Exchange Rates File",
+        "priority_index" : 10,
+        "display_type" : "file_browsing",
         "anchor" : false
       }
     }

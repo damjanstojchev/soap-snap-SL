@@ -1,7 +1,9 @@
 com\snaplogic\snaps\HelloWorld.class
 com\snaplogic\snaps\soapv1\XmlHandler.class
 com\snaplogic\snaps\Suggest$1.class
+com\snaplogic\snaps\snapsv3\XmlHandler.class
 com\snaplogic\snaps\SnapWithAccount.class
+com\snaplogic\snaps\snapsv3\SoapSnapV3.class
 com\snaplogic\snaps\CurrencyConverter$1.class
 com\snaplogic\snaps\soapv1\XmlHandlerImpl.class
 com\snaplogic\snaps\CharacterCounter$1.class
@@ -13,6 +15,7 @@ com\snaplogic\snaps\snapsv2\XmlHandler.class
 com\snaplogic\snaps\SchemaExample.class
 com\snaplogic\snaps\CurrencyConverter$ForExImpl.class
 com\snaplogic\snaps\TwoInputs.class
+com\snaplogic\snaps\snapsv3\XmlHandlerImpl.class
 com\snaplogic\snaps\CurrencyConverter.class
 com\snaplogic\snaps\SoapSnapCore.class
 com\snaplogic\snaps\DocConsumer.class

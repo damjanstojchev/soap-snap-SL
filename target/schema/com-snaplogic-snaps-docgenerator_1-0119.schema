@@ -1,8 +1,8 @@
 {
-  "id" : "com-snaplogic-snaps-exampleaccount_1-0093",
+  "id" : "com-snaplogic-snaps-docgenerator_1-0119",
   "type" : "object",
   "description" : "A schema for a snap",
-  "description" : "The common schema for accounts.",
+  "description" : "The common schema for snaps.",
   "properties" : {
     "class_id" : {
       "description" : "",
@@ -30,21 +30,24 @@
       "default" : "SNAPSHOT"
     },
     "schema_version" : {
-      "description" : "version of snap account schema",
+      "description" : "version of snap schema",
       "type" : "number",
       "required" : false,
       "minimum" : 2,
       "default" : 2
     },
+    "client_id" : {
+      "type" : "string"
+    },
     "instance_id" : {
       "type" : "string",
-      "pattern" : "^[a-f0-9]{8}-[a-f0-9]{4}-[a-f0-9]{4}-[a-f0-9]{4}-[a-f0-9]{12}$",
+      "pattern" : "^x[0-9]+|[a-f0-9]{8}-[a-f0-9]{4}-[a-f0-9]{4}-[a-f0-9]{4}-[a-f0-9]{12}$",
       "required" : true,
       "default" : "00000000-0000-0000-0000-000000000000"
     },
     "instance_fqid" : {
       "type" : "string",
-      "pattern" : "^[a-f0-9]{8}-[a-f0-9]{4}-[a-f0-9]{4}-[a-f0-9]{4}-[a-f0-9]{12}_[0-9]+$",
+      "pattern" : "^x[0-9]+_[0-9]+|[a-f0-9]{8}-[a-f0-9]{4}-[a-f0-9]{4}-[a-f0-9]{4}-[a-f0-9]{12}_[0-9]+$",
       "required" : true,
       "default" : "00000000-0000-0000-0000-000000000000_1"
     },
@@ -57,18 +60,18 @@
     "class_map" : {
       "description" : "Stores all the immutable definitions.",
       "extends" : {
-        "$ref" : "com-snaplogic-snap_2#accountpropertycategories"
+        "$ref" : "com-snaplogic-snap_2#propertycategories"
       },
       "properties" : {
         "settings" : {
           "properties" : {
-            "userId" : {
+            "execution_mode" : {
               "required" : true,
               "extends" : {
                 "$ref" : "com-snaplogic-snap_2#propertyextensions"
               }
             },
-            "passphrase" : {
+            "count" : {
               "required" : true,
               "extends" : {
                 "$ref" : "com-snaplogic-snap_2#propertyextensions"
@@ -80,27 +83,27 @@
     },
     "property_map" : {
       "extends" : {
-        "$ref" : "com-snaplogic-snap_2#accountinstancecategories"
+        "$ref" : "com-snaplogic-snap_2#instancecategories"
       },
       "required" : true,
       "properties" : {
         "settings" : {
           "additionalProperties" : false,
           "properties" : {
-            "userId" : {
+            "execution_mode" : {
               "extends" : {
                 "$ref" : "com-snaplogic-snap_2#instancepropertyextensions"
               },
               "properties" : {
                 "value" : {
-                  "required" : true,
+                  "default" : "Validate & Execute",
+                  "enum" : [ "Validate & Execute", "Execute only", "Disabled" ],
                   "format" : "",
                   "type" : "string"
                 }
-              },
-              "required" : true
+              }
             },
-            "passphrase" : {
+            "count" : {
               "extends" : {
                 "$ref" : "com-snaplogic-snap_2#instancepropertyextensions"
               },
@@ -108,36 +111,96 @@
                 "value" : {
                   "required" : true,
                   "format" : "",
-                  "type" : "string"
+                  "type" : "integer"
                 }
               },
               "required" : true
             }
           },
           "required" : true
+        },
+        "error" : {
+          "properties" : {
+            "error0" : {
+              "required" : true,
+              "additionalProperties" : false,
+              "properties" : {
+                "view_type" : {
+                  "extends" : {
+                    "$ref" : "com-snaplogic-snap_2#instancepropertyextensions"
+                  },
+                  "properties" : {
+                    "value" : {
+                      "default" : "document",
+                      "format" : "",
+                      "type" : "string"
+                    }
+                  }
+                },
+                "label" : {
+                  "extends" : {
+                    "$ref" : "com-snaplogic-snap_2#instancepropertyextensions"
+                  },
+                  "properties" : {
+                    "value" : {
+                      "default" : "error0",
+                      "format" : "",
+                      "type" : "string"
+                    }
+                  }
+                }
+              }
+            },
+            "error_behavior" : {
+              "extends" : {
+                "$ref" : "com-snaplogic-snap_2#instancepropertyextensions"
+              },
+              "properties" : {
+                "value" : {
+                  "default" : "fail",
+                  "enum" : [ "fail", "continue", "ignore" ],
+                  "format" : "",
+                  "type" : "string"
+                }
+              }
+            }
+          },
+          "additionalProperties" : false
         }
       }
     }
   },
   "class_map" : {
-    "property_category_list" : [ "info", "settings" ]
+    "property_category_list" : [ "settings", "input", "error", "output", "account", "info" ]
   },
   "property_map" : {
-    "view_serial" : 100
+    "view_serial" : 100,
+    "settings" : { }
   },
-  "description" : "The common schema for accounts.",
+  "description" : "The common schema for snaps.",
   "class_map" : {
-    "property_category_list" : [ "info", "settings" ],
+    "property_category_list" : [ "settings", "input", "error", "output", "account", "info" ],
     "info" : {
       "title" : {
         "ui_row_count" : 1,
-        "value" : "Example Snap Account",
+        "value" : "Doc Generator",
         "info_text" : "Class title shown for the Snap",
         "sensitivity_level" : "public",
         "label_text" : "Title",
         "priority_index" : 30,
         "display_type" : "visible",
         "anchor" : false
+      },
+      "purpose" : {
+        "ui_row_count" : 3,
+        "value" : "Generates documents based on the configuration",
+        "info_text" : "The description of the Snap",
+        "sensitivity_level" : "public",
+        "label_text" : "Purpose",
+        "priority_index" : 40,
+        "display_type" : "visible",
+        "anchor" : false,
+        "doc_uri" : "http://yourdocslinkhere.com"
       },
       "snap_pack_version" : {
         "ui_row_count" : 1,
@@ -151,7 +214,7 @@
       },
       "snap_pack_build_number" : {
         "ui_row_count" : 1,
-        "value" : "0093",
+        "value" : "0119",
         "info_text" : "The build number of the Snap pack to which the Snap belongs.",
         "sensitivity_level" : "public",
         "label_text" : "Snap-pack build-number",
@@ -161,7 +224,7 @@
       },
       "snap_pack_fqid" : {
         "ui_row_count" : 1,
-        "value" : "demosnapsdevelopment-snap-1-0093.zip",
+        "value" : "demosnapsdevelopment-snap-1-0119.zip",
         "info_text" : "The fully qualified id of Snap pack to which the Snap belongs.",
         "sensitivity_level" : "public",
         "label_text" : "Snap-pack fqid",
@@ -211,7 +274,7 @@
       },
       "snap_class_name" : {
         "ui_row_count" : 1,
-        "value" : "com.snaplogic.snaps.ExampleAccount",
+        "value" : "com.snaplogic.snaps.DocGenerator",
         "info_text" : "The name of the Snap class.",
         "sensitivity_level" : "public",
         "label_text" : "Snap class name",
@@ -219,9 +282,29 @@
         "display_type" : "hidden",
         "anchor" : false
       },
+      "implemented_runtimes" : {
+        "ui_row_count" : 1,
+        "value" : [ "standard" ],
+        "info_text" : "Compatible runtimes",
+        "sensitivity_level" : "public",
+        "label_text" : "Compatible runtimes",
+        "priority_index" : 15,
+        "display_type" : "hidden",
+        "anchor" : false
+      },
+      "snap_author" : {
+        "ui_row_count" : 2,
+        "value" : "Your Company Name",
+        "info_text" : "Author of the Snap",
+        "sensitivity_level" : "public",
+        "label_text" : "Developer",
+        "priority_index" : 50,
+        "display_type" : "visible",
+        "anchor" : false
+      },
       "class_fqid" : {
         "ui_row_count" : 2,
-        "value" : "com-snaplogic-snaps-exampleaccount_1-0093",
+        "value" : "com-snaplogic-snaps-docgenerator_1-0119",
         "info_text" : "The unique identifier of the Snap",
         "sensitivity_level" : "public",
         "label_text" : "Class FQID",
@@ -240,46 +323,92 @@
       },
       "notes" : {
         "ui_row_count" : 8,
-        "info_text" : "User provided long notes for Account instance",
+        "info_text" : "User provided long notes for Snap instance",
         "sensitivity_level" : "public",
         "label_text" : "Notes",
         "priority_index" : 20,
         "display_type" : "visible",
         "anchor" : false
+      }
+    },
+    "input" : {
+      "view_map" : {
+        "document" : {
+          "min_views" : 0,
+          "max_views" : 1
+        }
+      }
+    },
+    "output" : {
+      "view_map" : {
+        "document" : {
+          "min_views" : 1,
+          "max_views" : 1
+        }
+      }
+    },
+    "error" : {
+      "view_map" : {
+        "document" : {
+          "min_views" : 1,
+          "max_views" : 1
+        }
       },
-      "tags" : {
+      "error_behavior" : {
         "ui_row_count" : 1,
-        "info_text" : "User provided tags for Account instance",
+        "info_text" : "Determines if the Snap should fail, continue (write to error view) or ignore errors",
         "sensitivity_level" : "public",
-        "label_text" : "Tags",
-        "priority_index" : 25,
+        "label_text" : "Error behavior",
+        "priority_index" : 20,
         "display_type" : "visible",
         "anchor" : false
       }
     },
-    "category" : "custom",
-    "account_level" : "snap",
-    "account_mode" : "standard",
-    "is_validatable" : true,
+    "category" : "read",
     "settings" : {
-      "userId" : {
-        "info_text" : "ID of the user",
-        "sensitivity_level" : "medium",
-        "label_text" : "User ID",
-        "priority_index" : 10,
+      "execution_mode" : {
+        "info_text" : "Controls whether or not a Snap executes",
+        "label_text" : "Snap execution",
+        "priority_index" : 1010,
         "anchor" : false
       },
-      "passphrase" : {
-        "info_text" : "The user's passphrase",
-        "sensitivity_level" : "high",
-        "label_text" : "Passphrase",
-        "priority_index" : 20,
-        "display_type" : "password",
+      "count" : {
+        "info_text" : "Number of documents to create",
+        "label_text" : "count",
+        "priority_index" : 10,
         "anchor" : false
       }
     }
   },
   "property_map" : {
-    "view_serial" : 100
+    "view_serial" : 100,
+    "settings" : {
+      "execution_mode" : {
+        "value" : "Validate & Execute"
+      }
+    },
+    "output" : {
+      "output0" : {
+        "view_type" : {
+          "value" : "document"
+        },
+        "label" : {
+          "value" : "output0"
+        }
+      }
+    },
+    "error" : {
+      "error0" : {
+        "view_type" : {
+          "value" : "document"
+        },
+        "label" : {
+          "value" : "error0"
+        }
+      },
+      "error_behavior" : {
+        "value" : "fail"
+      }
+    }
   }
 }
