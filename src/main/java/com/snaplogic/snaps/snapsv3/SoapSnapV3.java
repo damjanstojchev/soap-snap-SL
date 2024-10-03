@@ -7,8 +7,6 @@ import com.snaplogic.api.Snap;
 import com.snaplogic.common.properties.builders.PropertyBuilder;
 import com.snaplogic.snap.api.*;
 import com.snaplogic.snap.api.capabilities.*;
-import org.apache.http.HttpEntity;
-import org.apache.http.HttpResponse;
 import org.apache.http.auth.AuthScope;
 import org.apache.http.auth.UsernamePasswordCredentials;
 import org.apache.http.client.methods.CloseableHttpResponse;
@@ -43,9 +41,9 @@ public class SoapSnapV3 implements Snap {
     private static String serviceName;
     private static String endPoint;
     private static String operation;
-    private static String envelope;
 
     private static final XmlHandlerImpl xmlHandler = new XmlHandlerImpl();
+
     @Inject
     private DocumentUtility documentUtility;
     @Inject
@@ -101,6 +99,10 @@ public class SoapSnapV3 implements Snap {
                 })
                 .required()
                 .add();
+
+        propertyBuilder.describe(ENVELOPE, "Envelope")
+                .uiRowCount(10)
+                .add();
     }
 
     @Override
@@ -112,14 +114,6 @@ public class SoapSnapV3 implements Snap {
             endPoint = propertyValues.get(ENDPOINT);
 
             Document document = xmlHandler.loadWsdl(wsdlUrl);
-
-//            NodeList operationNodes = document.getElementsByTagName("wsdl:operation");
-//            for (int i = 0; i < operationNodes.getLength(); i++) {
-//                if (operationNodes.item(i).getAttributes().getNamedItem("name").getTextContent().equals(operation)) {
-//                    operation = operationNodes.item(i).getAttributes().getNamedItem("name").getTextContent();
-//                    break;
-//                }
-//            }
             List<String> x = xmlHandler.extractSpecificOperations(document, serviceName);
 
             if (x == null) {
@@ -142,93 +136,10 @@ public class SoapSnapV3 implements Snap {
         } catch (Exception e) {
             throw new SnapDataException(e, "The operation is null or non-existed " + e.getMessage());
         }
-//        endPoint = propertyValues.get(PropertyCategory.SETTINGS, ENDPOINT);
     }
 
     @Override
     public void execute() throws ExecutionException, SnapDataException {
-//        String username = "SAAS.IMP2";
-//        String password = "welcome123";
-//
-//        try {
-//            // Create the credentials provider
-//            BasicCredentialsProvider credsProvider = new BasicCredentialsProvider();
-//            credsProvider.setCredentials(
-//                    new AuthScope(AuthScope.ANY_HOST, AuthScope.ANY_PORT),
-//                    new UsernamePasswordCredentials(username, password)
-//            );
-//
-//            // Create HTTP client with credentials provider
-//            CloseableHttpClient httpClient = HttpClients.custom()
-//                    .setDefaultCredentialsProvider(credsProvider)
-//                    .build();
-//
-//            HttpPost httpPost = new HttpPost(WSDL_URL);
-//
-//            // SOAP request body
-//            String soapEnvelope = "<?xml version=\"1.0\" encoding=\"UTF-8\"?>"
-//                    + "<soap:Envelope xmlns:soap=\"http://www.w3.org/2003/05/soap-envelope\""
-//                    + " xmlns:pub=\"http://xmlns.oracle.com/oxp/service/PublicReportService\">"
-//                    + "    <soap:Header/>"
-//                    + "    <soap:Body>"
-//                    + "        <pub:runReport>"
-//                    + "            <pub:reportRequest>"
-//                    + "                <pub:attributeFormat>csv</pub:attributeFormat>"
-//                    + "                <pub:parameterNameValues>"
-//                    + "                    <pub:item>"
-//                    + "                        <pub:name>pPERSON_NUMBER</pub:name>"
-//                    + "                        <pub:values>"
-//                    + "                            <pub:item>7</pub:item>"
-//                    + "                        </pub:values>"
-//                    + "                    </pub:item>"
-//                    + "                </pub:parameterNameValues>"
-//                    + "                <pub:reportAbsolutePath>/Custom/Person Details/Person Detail Report.xdo</pub:reportAbsolutePath>"
-//                    + "                <pub:sizeOfDataChunkDownload>-1</pub:sizeOfDataChunkDownload>"
-//                    + "            </pub:reportRequest>"
-//                    + "            <pub:appParams>?</pub:appParams>"
-//                    + "        </pub:runReport>"
-//                    + "    </soap:Body>"
-//                    + "</soap:Envelope>";
-//
-//            // Headers
-//            httpPost.setHeader("Content-Type", "application/soap+xml");
-//
-//            StringEntity entity = new StringEntity(soapEnvelope, "UTF-8");
-//            httpPost.setEntity(entity);
-//
-//            // Execute the request
-//            HttpResponse response = httpClient.execute(httpPost);
-//
-//            // Response status code
-//            int statusCode = response.getStatusLine().getStatusCode();
-//            System.out.println(statusCode);
-//
-//            // Get the response entity (the SOAP envelope)
-//            HttpEntity responseEntity = response.getEntity();
-//            if (responseEntity != null) {
-//                String responseString = EntityUtils.toString(responseEntity);
-//                //System.out.println(responseString); if the xml needs to be printed
-//
-//                // Convert the SOAP XML response to JSON
-//                JSONObject jsonResponse = XML.toJSONObject(responseString);
-//                System.out.println(jsonResponse.toString(4));
-//
-//                // Access specific fields in the JSON
-//                JSONObject envelope = jsonResponse.getJSONObject("env:Envelope");
-//                JSONObject body = envelope.getJSONObject("env:Body");
-//                // Access the response data from the body
-//                if (body.has("runReportResponse")) {
-//                    JSONObject reportResponse = body.getJSONObject("runReportResponse");
-//                    System.out.println("Report Response Data: " + reportResponse.toString());
-//                }
-//
-//            }
-//            httpClient.close();
-//        } catch (Exception e) {
-//            e.printStackTrace();
-//        }
-//        outputViews.write(documentUtility.newDocument("test123"));
-
          BasicCredentialsProvider credsProvider;
          CloseableHttpClient httpClient;
          HttpPost httpPost;
@@ -236,21 +147,18 @@ public class SoapSnapV3 implements Snap {
          StringEntity entity;
          CloseableHttpResponse response;
          String responseString;
+        int statusCode = 0;
 
         try {
-            // Credentials setup
             credsProvider = new BasicCredentialsProvider();
             credsProvider.setCredentials(
                     new AuthScope(AuthScope.ANY_HOST, AuthScope.ANY_PORT),
                     new UsernamePasswordCredentials("SAAS.IMP2", "welcome123")
             );
-
-            // HTTP client setup
             httpClient = HttpClients.custom()
                     .setDefaultCredentialsProvider(credsProvider)
                     .build();
 
-            // Prepare SOAP request
             httpPost = new HttpPost(endPoint);
 
             soapEnvelope = "<?xml version=\"1.0\" encoding=\"UTF-8\"?>"
@@ -281,23 +189,18 @@ public class SoapSnapV3 implements Snap {
             httpPost.setEntity(entity);
             httpPost.setHeader("Content-Type", "application/soap+xml");
 
-            // Execute the SOAP request
             response = httpClient.execute(httpPost);
-            int statusCode = response.getStatusLine().getStatusCode();
+            statusCode = response.getStatusLine().getStatusCode();
             System.out.println("Response Status Code: " + statusCode);
 
-            // Check if response is successful
             if (statusCode == 200) {
-                // Process the response
                 responseString = EntityUtils.toString(response.getEntity());
 
-                // Convert the SOAP XML response to JSON
                 JSONObject jsonResponse = XML.toJSONObject(responseString);
 
-                // Map to store output data
-                Map<String, String> data = new LinkedHashMap<>();
+                Map<String, Object> data = new LinkedHashMap<>();
                 data.put("status_code", String.valueOf(statusCode));
-                data.put("response", jsonResponse.toString());
+                data.put("response", jsonResponse.toMap());
                 outputViews.write(documentUtility.newDocument(data));
 
             } else {
@@ -307,6 +210,7 @@ public class SoapSnapV3 implements Snap {
 
         } catch (Exception e) {
             e.printStackTrace();
+            throw new ExecutionException("Error test123");
         }
     }
 

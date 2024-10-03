@@ -1,5 +1,5 @@
 {
-  "id" : "com-snaplogic-snaps-soapv1-soapsnapv1_1-0119",
+  "id" : "com-snaplogic-snaps-soapsnapcore_1-0122",
   "type" : "object",
   "description" : "A schema for a snap",
   "description" : "The common schema for snaps.",
@@ -246,7 +246,7 @@
     "info" : {
       "title" : {
         "ui_row_count" : 1,
-        "value" : "Soap Snap v1",
+        "value" : "Soap Snap Core",
         "info_text" : "Class title shown for the Snap",
         "sensitivity_level" : "public",
         "label_text" : "Title",
@@ -263,7 +263,7 @@
         "priority_index" : 40,
         "display_type" : "visible",
         "anchor" : false,
-        "doc_uri" : "https://docs-snaplogic.atlassian.net/wiki/display/SD/Soap%20Snap%20v1"
+        "doc_uri" : "https://docs-snaplogic.atlassian.net/wiki/display/SD/Soap%20Snap%20Core"
       },
       "snap_pack_version" : {
         "ui_row_count" : 1,
@@ -277,7 +277,7 @@
       },
       "snap_pack_build_number" : {
         "ui_row_count" : 1,
-        "value" : "0119",
+        "value" : "0122",
         "info_text" : "The build number of the Snap pack to which the Snap belongs.",
         "sensitivity_level" : "public",
         "label_text" : "Snap-pack build-number",
@@ -287,7 +287,7 @@
       },
       "snap_pack_fqid" : {
         "ui_row_count" : 1,
-        "value" : "demosnapsdevelopment-snap-1-0119.zip",
+        "value" : "demosnapsdevelopment-snap-1-0122.zip",
         "info_text" : "The fully qualified id of Snap pack to which the Snap belongs.",
         "sensitivity_level" : "public",
         "label_text" : "Snap-pack fqid",
@@ -337,7 +337,7 @@
       },
       "snap_class_name" : {
         "ui_row_count" : 1,
-        "value" : "com.snaplogic.snaps.soapv1.SoapSnapV1",
+        "value" : "com.snaplogic.snaps.SoapSnapCore",
         "info_text" : "The name of the Snap class.",
         "sensitivity_level" : "public",
         "label_text" : "Snap class name",
@@ -367,7 +367,7 @@
       },
       "class_fqid" : {
         "ui_row_count" : 2,
-        "value" : "com-snaplogic-snaps-soapv1-soapsnapv1_1-0119",
+        "value" : "com-snaplogic-snaps-soapsnapcore_1-0122",
         "info_text" : "The unique identifier of the Snap",
         "sensitivity_level" : "public",
         "label_text" : "Class FQID",
@@ -436,7 +436,7 @@
         "anchor" : false
       },
       "wsdl url" : {
-        "info_text" : "Insert the WSDL URL",
+        "info_text" : "Insert the wsdl url",
         "label_text" : "wsdl url",
         "priority_index" : 10,
         "anchor" : false

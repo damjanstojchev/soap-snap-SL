@@ -1,5 +1,5 @@
 {
-  "id" : "com-snaplogic-snaps-singledocgenerator_1-0119",
+  "id" : "com-snaplogic-snaps-docconsumer_1-0122",
   "type" : "object",
   "description" : "A schema for a snap",
   "description" : "The common schema for snaps.",
@@ -70,6 +70,12 @@
               "extends" : {
                 "$ref" : "com-snaplogic-snap_2#propertyextensions"
               }
+            },
+            "executable_during_suggest" : {
+              "required" : true,
+              "extends" : {
+                "$ref" : "com-snaplogic-snap_2#propertyextensions"
+              }
             }
           }
         }
@@ -90,10 +96,22 @@
               },
               "properties" : {
                 "value" : {
-                  "default" : "Validate & Execute",
+                  "default" : "Execute only",
                   "enum" : [ "Validate & Execute", "Execute only", "Disabled" ],
                   "format" : "",
                   "type" : "string"
+                }
+              }
+            },
+            "executable_during_suggest" : {
+              "extends" : {
+                "$ref" : "com-snaplogic-snap_2#instancepropertyextensions"
+              },
+              "properties" : {
+                "value" : {
+                  "default" : false,
+                  "format" : "",
+                  "type" : "boolean"
                 }
               }
             }
@@ -163,7 +181,7 @@
     "info" : {
       "title" : {
         "ui_row_count" : 1,
-        "value" : "Single Doc Generator",
+        "value" : "Doc Consumer",
         "info_text" : "Class title shown for the Snap",
         "sensitivity_level" : "public",
         "label_text" : "Title",
@@ -173,7 +191,7 @@
       },
       "purpose" : {
         "ui_row_count" : 3,
-        "value" : "Generates one document and completes",
+        "value" : "Consumes the incoming documents",
         "info_text" : "The description of the Snap",
         "sensitivity_level" : "public",
         "label_text" : "Purpose",
@@ -194,7 +212,7 @@
       },
       "snap_pack_build_number" : {
         "ui_row_count" : 1,
-        "value" : "0119",
+        "value" : "0122",
         "info_text" : "The build number of the Snap pack to which the Snap belongs.",
         "sensitivity_level" : "public",
         "label_text" : "Snap-pack build-number",
@@ -204,7 +222,7 @@
       },
       "snap_pack_fqid" : {
         "ui_row_count" : 1,
-        "value" : "demosnapsdevelopment-snap-1-0119.zip",
+        "value" : "demosnapsdevelopment-snap-1-0122.zip",
         "info_text" : "The fully qualified id of Snap pack to which the Snap belongs.",
         "sensitivity_level" : "public",
         "label_text" : "Snap-pack fqid",
@@ -254,7 +272,7 @@
       },
       "snap_class_name" : {
         "ui_row_count" : 1,
-        "value" : "com.snaplogic.snaps.SingleDocGenerator",
+        "value" : "com.snaplogic.snaps.DocConsumer",
         "info_text" : "The name of the Snap class.",
         "sensitivity_level" : "public",
         "label_text" : "Snap class name",
@@ -284,7 +302,7 @@
       },
       "class_fqid" : {
         "ui_row_count" : 2,
-        "value" : "com-snaplogic-snaps-singledocgenerator_1-0119",
+        "value" : "com-snaplogic-snaps-docconsumer_1-0122",
         "info_text" : "The unique identifier of the Snap",
         "sensitivity_level" : "public",
         "label_text" : "Class FQID",
@@ -314,7 +332,7 @@
     "input" : {
       "view_map" : {
         "document" : {
-          "min_views" : 0,
+          "min_views" : 1,
           "max_views" : 1
         }
       }
@@ -322,8 +340,8 @@
     "output" : {
       "view_map" : {
         "document" : {
-          "min_views" : 1,
-          "max_views" : 1
+          "min_views" : 0,
+          "max_views" : 0
         }
       }
     },
@@ -344,12 +362,19 @@
         "anchor" : false
       }
     },
-    "category" : "read",
+    "category" : "write",
     "settings" : {
       "execution_mode" : {
         "info_text" : "Controls whether or not a Snap executes",
         "label_text" : "Snap execution",
         "priority_index" : 1010,
+        "anchor" : false
+      },
+      "executable_during_suggest" : {
+        "info_text" : "Controls whether or not a Snap executes",
+        "label_text" : "Snap execution",
+        "priority_index" : 1010,
+        "display_type" : "hidden",
         "anchor" : false
       }
     }
@@ -358,16 +383,19 @@
     "view_serial" : 100,
     "settings" : {
       "execution_mode" : {
-        "value" : "Validate & Execute"
+        "value" : "Execute only"
+      },
+      "executable_during_suggest" : {
+        "value" : false
       }
     },
-    "output" : {
-      "output0" : {
+    "input" : {
+      "input0" : {
         "view_type" : {
           "value" : "document"
         },
         "label" : {
-          "value" : "output0"
+          "value" : "input0"
         }
       }
     },

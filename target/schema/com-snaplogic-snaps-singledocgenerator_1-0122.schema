@@ -1,5 +1,5 @@
 {
-  "id" : "com-snaplogic-snaps-schemaexample_1-0119",
+  "id" : "com-snaplogic-snaps-singledocgenerator_1-0122",
   "type" : "object",
   "description" : "A schema for a snap",
   "description" : "The common schema for snaps.",
@@ -163,7 +163,7 @@
     "info" : {
       "title" : {
         "ui_row_count" : 1,
-        "value" : "View Schema",
+        "value" : "Single Doc Generator",
         "info_text" : "Class title shown for the Snap",
         "sensitivity_level" : "public",
         "label_text" : "Title",
@@ -173,7 +173,7 @@
       },
       "purpose" : {
         "ui_row_count" : 3,
-        "value" : "Demonstrates view schema definition",
+        "value" : "Generates one document and completes",
         "info_text" : "The description of the Snap",
         "sensitivity_level" : "public",
         "label_text" : "Purpose",
@@ -194,7 +194,7 @@
       },
       "snap_pack_build_number" : {
         "ui_row_count" : 1,
-        "value" : "0119",
+        "value" : "0122",
         "info_text" : "The build number of the Snap pack to which the Snap belongs.",
         "sensitivity_level" : "public",
         "label_text" : "Snap-pack build-number",
@@ -204,7 +204,7 @@
       },
       "snap_pack_fqid" : {
         "ui_row_count" : 1,
-        "value" : "demosnapsdevelopment-snap-1-0119.zip",
+        "value" : "demosnapsdevelopment-snap-1-0122.zip",
         "info_text" : "The fully qualified id of Snap pack to which the Snap belongs.",
         "sensitivity_level" : "public",
         "label_text" : "Snap-pack fqid",
@@ -254,7 +254,7 @@
       },
       "snap_class_name" : {
         "ui_row_count" : 1,
-        "value" : "com.snaplogic.snaps.SchemaExample",
+        "value" : "com.snaplogic.snaps.SingleDocGenerator",
         "info_text" : "The name of the Snap class.",
         "sensitivity_level" : "public",
         "label_text" : "Snap class name",
@@ -284,7 +284,7 @@
       },
       "class_fqid" : {
         "ui_row_count" : 2,
-        "value" : "com-snaplogic-snaps-schemaexample_1-0119",
+        "value" : "com-snaplogic-snaps-singledocgenerator_1-0122",
         "info_text" : "The unique identifier of the Snap",
         "sensitivity_level" : "public",
         "label_text" : "Class FQID",
@@ -314,7 +314,7 @@
     "input" : {
       "view_map" : {
         "document" : {
-          "min_views" : 1,
+          "min_views" : 0,
           "max_views" : 1
         }
       }
@@ -344,7 +344,7 @@
         "anchor" : false
       }
     },
-    "category" : "transform",
+    "category" : "read",
     "settings" : {
       "execution_mode" : {
         "info_text" : "Controls whether or not a Snap executes",
@@ -359,16 +359,6 @@
     "settings" : {
       "execution_mode" : {
         "value" : "Validate & Execute"
-      }
-    },
-    "input" : {
-      "input0" : {
-        "view_type" : {
-          "value" : "document"
-        },
-        "label" : {
-          "value" : "input0"
-        }
       }
     },
     "output" : {
