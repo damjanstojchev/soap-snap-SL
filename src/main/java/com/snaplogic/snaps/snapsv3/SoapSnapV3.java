@@ -153,7 +153,7 @@ public class SoapSnapV3 implements Snap {
             credsProvider = new BasicCredentialsProvider();
             credsProvider.setCredentials(
                     new AuthScope(AuthScope.ANY_HOST, AuthScope.ANY_PORT),
-                    new UsernamePasswordCredentials("SAAS.IMP2", "welcome123")
+                    new UsernamePasswordCredentials("SAAS.IMP1", "welcome123")
             );
             httpClient = HttpClients.custom()
                     .setDefaultCredentialsProvider(credsProvider)
@@ -173,7 +173,7 @@ public class SoapSnapV3 implements Snap {
                     + "                    <pub:item>"
                     + "                        <pub:name>pPERSON_NUMBER</pub:name>"
                     + "                        <pub:values>"
-                    + "                            <pub:item>7</pub:item>"
+                    + "                            <pub:item>300000002092116</pub:item>"
                     + "                        </pub:values>"
                     + "                    </pub:item>"
                     + "                </pub:parameterNameValues>"
@@ -202,6 +202,7 @@ public class SoapSnapV3 implements Snap {
                 data.put("status_code", String.valueOf(statusCode));
                 data.put("response", jsonResponse.toMap());
                 outputViews.write(documentUtility.newDocument(data));
+                outputViews.write(documentUtility.newDocument("AAAAAAAAAAAAAAAAAAAAA"));
 
             } else {
                 System.out.println("Failed to get a valid response. Status Code: " + statusCode);

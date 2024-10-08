@@ -1,5 +1,5 @@
 {
-  "id" : "com-snaplogic-snaps-soapv1-soapsnapv1_1-0122",
+  "id" : "com-snaplogic-snaps-soapv1-soapsnapv1_1-0126",
   "type" : "object",
   "description" : "A schema for a snap",
   "description" : "The common schema for snaps.",
@@ -277,7 +277,7 @@
       },
       "snap_pack_build_number" : {
         "ui_row_count" : 1,
-        "value" : "0122",
+        "value" : "0126",
         "info_text" : "The build number of the Snap pack to which the Snap belongs.",
         "sensitivity_level" : "public",
         "label_text" : "Snap-pack build-number",
@@ -287,7 +287,7 @@
       },
       "snap_pack_fqid" : {
         "ui_row_count" : 1,
-        "value" : "demosnapsdevelopment-snap-1-0122.zip",
+        "value" : "demosnapsdevelopment-snap-1-0126.zip",
         "info_text" : "The fully qualified id of Snap pack to which the Snap belongs.",
         "sensitivity_level" : "public",
         "label_text" : "Snap-pack fqid",
@@ -367,7 +367,7 @@
       },
       "class_fqid" : {
         "ui_row_count" : 2,
-        "value" : "com-snaplogic-snaps-soapv1-soapsnapv1_1-0122",
+        "value" : "com-snaplogic-snaps-soapv1-soapsnapv1_1-0126",
         "info_text" : "The unique identifier of the Snap",
         "sensitivity_level" : "public",
         "label_text" : "Class FQID",

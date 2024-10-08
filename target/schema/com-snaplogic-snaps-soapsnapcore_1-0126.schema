@@ -1,5 +1,5 @@
 {
-  "id" : "com-snaplogic-snaps-docgenerator_1-0122",
+  "id" : "com-snaplogic-snaps-soapsnapcore_1-0126",
   "type" : "object",
   "description" : "A schema for a snap",
   "description" : "The common schema for snaps.",
@@ -71,7 +71,25 @@
                 "$ref" : "com-snaplogic-snap_2#propertyextensions"
               }
             },
-            "count" : {
+            "wsdl url" : {
+              "required" : true,
+              "extends" : {
+                "$ref" : "com-snaplogic-snap_2#propertyextensions"
+              }
+            },
+            "Service Name" : {
+              "required" : true,
+              "extends" : {
+                "$ref" : "com-snaplogic-snap_2#propertyextensions"
+              }
+            },
+            "Endpoint" : {
+              "required" : true,
+              "extends" : {
+                "$ref" : "com-snaplogic-snap_2#propertyextensions"
+              }
+            },
+            "Operation" : {
               "required" : true,
               "extends" : {
                 "$ref" : "com-snaplogic-snap_2#propertyextensions"
@@ -103,7 +121,7 @@
                 }
               }
             },
-            "count" : {
+            "wsdl url" : {
               "extends" : {
                 "$ref" : "com-snaplogic-snap_2#instancepropertyextensions"
               },
@@ -111,7 +129,52 @@
                 "value" : {
                   "required" : true,
                   "format" : "",
-                  "type" : "integer"
+                  "type" : "string"
+                }
+              },
+              "required" : true
+            },
+            "Service Name" : {
+              "extends" : {
+                "$ref" : "com-snaplogic-snap_2#instancepropertyextensions"
+              },
+              "properties" : {
+                "value" : {
+                  "expression" : true,
+                  "required" : true,
+                  "suggestable" : true,
+                  "format" : "",
+                  "type" : "string"
+                }
+              },
+              "required" : true
+            },
+            "Endpoint" : {
+              "extends" : {
+                "$ref" : "com-snaplogic-snap_2#instancepropertyextensions"
+              },
+              "properties" : {
+                "value" : {
+                  "expression" : true,
+                  "required" : true,
+                  "suggestable" : true,
+                  "format" : "",
+                  "type" : "string"
+                }
+              },
+              "required" : true
+            },
+            "Operation" : {
+              "extends" : {
+                "$ref" : "com-snaplogic-snap_2#instancepropertyextensions"
+              },
+              "properties" : {
+                "value" : {
+                  "expression" : true,
+                  "required" : true,
+                  "suggestable" : true,
+                  "format" : "",
+                  "type" : "string"
                 }
               },
               "required" : true
@@ -183,7 +246,7 @@
     "info" : {
       "title" : {
         "ui_row_count" : 1,
-        "value" : "Doc Generator",
+        "value" : "Soap Snap Core",
         "info_text" : "Class title shown for the Snap",
         "sensitivity_level" : "public",
         "label_text" : "Title",
@@ -193,14 +256,14 @@
       },
       "purpose" : {
         "ui_row_count" : 3,
-        "value" : "Generates documents based on the configuration",
+        "value" : "Soap Requests",
         "info_text" : "The description of the Snap",
         "sensitivity_level" : "public",
         "label_text" : "Purpose",
         "priority_index" : 40,
         "display_type" : "visible",
         "anchor" : false,
-        "doc_uri" : "http://yourdocslinkhere.com"
+        "doc_uri" : "https://docs-snaplogic.atlassian.net/wiki/display/SD/Soap%20Snap%20Core"
       },
       "snap_pack_version" : {
         "ui_row_count" : 1,
@@ -214,7 +277,7 @@
       },
       "snap_pack_build_number" : {
         "ui_row_count" : 1,
-        "value" : "0122",
+        "value" : "0126",
         "info_text" : "The build number of the Snap pack to which the Snap belongs.",
         "sensitivity_level" : "public",
         "label_text" : "Snap-pack build-number",
@@ -224,7 +287,7 @@
       },
       "snap_pack_fqid" : {
         "ui_row_count" : 1,
-        "value" : "demosnapsdevelopment-snap-1-0122.zip",
+        "value" : "demosnapsdevelopment-snap-1-0126.zip",
         "info_text" : "The fully qualified id of Snap pack to which the Snap belongs.",
         "sensitivity_level" : "public",
         "label_text" : "Snap-pack fqid",
@@ -274,7 +337,7 @@
       },
       "snap_class_name" : {
         "ui_row_count" : 1,
-        "value" : "com.snaplogic.snaps.DocGenerator",
+        "value" : "com.snaplogic.snaps.SoapSnapCore",
         "info_text" : "The name of the Snap class.",
         "sensitivity_level" : "public",
         "label_text" : "Snap class name",
@@ -294,7 +357,7 @@
       },
       "snap_author" : {
         "ui_row_count" : 2,
-        "value" : "Your Company Name",
+        "value" : "Baselinked",
         "info_text" : "Author of the Snap",
         "sensitivity_level" : "public",
         "label_text" : "Developer",
@@ -304,7 +367,7 @@
       },
       "class_fqid" : {
         "ui_row_count" : 2,
-        "value" : "com-snaplogic-snaps-docgenerator_1-0122",
+        "value" : "com-snaplogic-snaps-soapsnapcore_1-0126",
         "info_text" : "The unique identifier of the Snap",
         "sensitivity_level" : "public",
         "label_text" : "Class FQID",
@@ -359,7 +422,7 @@
         "info_text" : "Determines if the Snap should fail, continue (write to error view) or ignore errors",
         "sensitivity_level" : "public",
         "label_text" : "Error behavior",
-        "priority_index" : 20,
+        "priority_index" : 50,
         "display_type" : "visible",
         "anchor" : false
       }
@@ -372,10 +435,31 @@
         "priority_index" : 1010,
         "anchor" : false
       },
-      "count" : {
-        "info_text" : "Number of documents to create",
-        "label_text" : "count",
+      "wsdl url" : {
+        "info_text" : "Insert the wsdl url",
+        "label_text" : "wsdl url",
         "priority_index" : 10,
+        "anchor" : false
+      },
+      "Service Name" : {
+        "info_text" : "Extract service name if needed",
+        "label_text" : "Service Name",
+        "priority_index" : 20,
+        "display_type" : "suggestable",
+        "anchor" : false
+      },
+      "Endpoint" : {
+        "info_text" : "Select specific endpoint",
+        "label_text" : "Endpoint",
+        "priority_index" : 30,
+        "display_type" : "suggestable",
+        "anchor" : false
+      },
+      "Operation" : {
+        "info_text" : "Select specific operation",
+        "label_text" : "Operation",
+        "priority_index" : 40,
+        "display_type" : "suggestable",
         "anchor" : false
       }
     }
