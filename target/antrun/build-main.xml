@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project name="maven-antrun-" default="main">
   <target name="main">
-    <echo file="D:\snap-development-fir\demosnapsdevelopment\target/classes/build.properties">build_number=0126
+    <echo file="D:\snap-development-fir\demosnapsdevelopment\target/classes/build.properties">build_number=0128
                                     snap_pack_version=1
-                                    snap_pack_fqid=demosnapsdevelopment-snap-1-0126.zip
+                                    snap_pack_fqid=demosnapsdevelopment-snap-1-0128.zip
                                     snap_pack_url=$SNAP_HOME/demosnapsdevelopment/target/demosnapsdevelopment-build
                                     snap_pack_name=demosnapsdevelopment</echo>
   </target>

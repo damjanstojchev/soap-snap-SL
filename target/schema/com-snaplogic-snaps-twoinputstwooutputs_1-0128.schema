@@ -1,5 +1,5 @@
 {
-  "id" : "com-snaplogic-snaps-twoinputs_1-0126",
+  "id" : "com-snaplogic-snaps-twoinputstwooutputs_1-0128",
   "type" : "object",
   "description" : "A schema for a snap",
   "description" : "The common schema for snaps.",
@@ -98,6 +98,54 @@
               }
             }
           }
+        },
+        "error" : {
+          "properties" : {
+            "error0" : {
+              "required" : true,
+              "additionalProperties" : false,
+              "properties" : {
+                "view_type" : {
+                  "extends" : {
+                    "$ref" : "com-snaplogic-snap_2#instancepropertyextensions"
+                  },
+                  "properties" : {
+                    "value" : {
+                      "default" : "document",
+                      "format" : "",
+                      "type" : "string"
+                    }
+                  }
+                },
+                "label" : {
+                  "extends" : {
+                    "$ref" : "com-snaplogic-snap_2#instancepropertyextensions"
+                  },
+                  "properties" : {
+                    "value" : {
+                      "default" : "error0",
+                      "format" : "",
+                      "type" : "string"
+                    }
+                  }
+                }
+              }
+            },
+            "error_behavior" : {
+              "extends" : {
+                "$ref" : "com-snaplogic-snap_2#instancepropertyextensions"
+              },
+              "properties" : {
+                "value" : {
+                  "default" : "fail",
+                  "enum" : [ "fail", "continue", "ignore" ],
+                  "format" : "",
+                  "type" : "string"
+                }
+              }
+            }
+          },
+          "additionalProperties" : false
         }
       }
     }
@@ -115,7 +163,7 @@
     "info" : {
       "title" : {
         "ui_row_count" : 1,
-        "value" : "Two Inputs",
+        "value" : "Two Ins/Outs",
         "info_text" : "Class title shown for the Snap",
         "sensitivity_level" : "public",
         "label_text" : "Title",
@@ -125,7 +173,7 @@
       },
       "purpose" : {
         "ui_row_count" : 3,
-        "value" : "Accepts two inputs (expected phone books, merges them)",
+        "value" : "Accepts two inputs, sends to two outputs.",
         "info_text" : "The description of the Snap",
         "sensitivity_level" : "public",
         "label_text" : "Purpose",
@@ -146,7 +194,7 @@
       },
       "snap_pack_build_number" : {
         "ui_row_count" : 1,
-        "value" : "0126",
+        "value" : "0128",
         "info_text" : "The build number of the Snap pack to which the Snap belongs.",
         "sensitivity_level" : "public",
         "label_text" : "Snap-pack build-number",
@@ -156,7 +204,7 @@
       },
       "snap_pack_fqid" : {
         "ui_row_count" : 1,
-        "value" : "demosnapsdevelopment-snap-1-0126.zip",
+        "value" : "demosnapsdevelopment-snap-1-0128.zip",
         "info_text" : "The fully qualified id of Snap pack to which the Snap belongs.",
         "sensitivity_level" : "public",
         "label_text" : "Snap-pack fqid",
@@ -206,7 +254,7 @@
       },
       "snap_class_name" : {
         "ui_row_count" : 1,
-        "value" : "com.snaplogic.snaps.TwoInputs",
+        "value" : "com.snaplogic.snaps.TwoInputsTwoOutputs",
         "info_text" : "The name of the Snap class.",
         "sensitivity_level" : "public",
         "label_text" : "Snap class name",
@@ -236,7 +284,7 @@
       },
       "class_fqid" : {
         "ui_row_count" : 2,
-        "value" : "com-snaplogic-snaps-twoinputs_1-0126",
+        "value" : "com-snaplogic-snaps-twoinputstwooutputs_1-0128",
         "info_text" : "The unique identifier of the Snap",
         "sensitivity_level" : "public",
         "label_text" : "Class FQID",
@@ -274,15 +322,15 @@
     "output" : {
       "view_map" : {
         "document" : {
-          "min_views" : 1,
-          "max_views" : 1
+          "min_views" : 2,
+          "max_views" : 2
         }
       }
     },
     "error" : {
       "view_map" : {
         "document" : {
-          "min_views" : 0,
+          "min_views" : 1,
           "max_views" : 1
         }
       },
@@ -332,16 +380,32 @@
       }
     },
     "output" : {
-      "output0" : {
+      "output_male" : {
         "view_type" : {
           "value" : "document"
         },
         "label" : {
-          "value" : "output0"
+          "value" : "output_male"
+        }
+      },
+      "output_female" : {
+        "view_type" : {
+          "value" : "document"
+        },
+        "label" : {
+          "value" : "output_female"
         }
       }
     },
     "error" : {
+      "error0" : {
+        "view_type" : {
+          "value" : "document"
+        },
+        "label" : {
+          "value" : "error0"
+        }
+      },
       "error_behavior" : {
         "value" : "fail"
       }

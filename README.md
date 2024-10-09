@@ -4,3 +4,4 @@
 2. Get response from Output
 3. Convert from XML to JSON
 4. AUTH 
+5. HEADER

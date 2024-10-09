@@ -1,5 +1,5 @@
 {
-  "id" : "com-snaplogic-snaps-currencyconverter_1-0126",
+  "id" : "com-snaplogic-snaps-docgenerator_1-0128",
   "type" : "object",
   "description" : "A schema for a snap",
   "description" : "The common schema for snaps.",
@@ -71,7 +71,7 @@
                 "$ref" : "com-snaplogic-snap_2#propertyextensions"
               }
             },
-            "inputFile" : {
+            "count" : {
               "required" : true,
               "extends" : {
                 "$ref" : "com-snaplogic-snap_2#propertyextensions"
@@ -103,19 +103,21 @@
                 }
               }
             },
-            "inputFile" : {
+            "count" : {
               "extends" : {
                 "$ref" : "com-snaplogic-snap_2#instancepropertyextensions"
               },
               "properties" : {
                 "value" : {
-                  "expression" : true,
+                  "required" : true,
                   "format" : "",
-                  "type" : "string"
+                  "type" : "integer"
                 }
-              }
+              },
+              "required" : true
             }
-          }
+          },
+          "required" : true
         },
         "error" : {
           "properties" : {
@@ -181,7 +183,7 @@
     "info" : {
       "title" : {
         "ui_row_count" : 1,
-        "value" : "Currency Converter",
+        "value" : "Doc Generator",
         "info_text" : "Class title shown for the Snap",
         "sensitivity_level" : "public",
         "label_text" : "Title",
@@ -191,7 +193,7 @@
       },
       "purpose" : {
         "ui_row_count" : 3,
-        "value" : "Demonstrates dependency injection",
+        "value" : "Generates documents based on the configuration",
         "info_text" : "The description of the Snap",
         "sensitivity_level" : "public",
         "label_text" : "Purpose",
@@ -212,7 +214,7 @@
       },
       "snap_pack_build_number" : {
         "ui_row_count" : 1,
-        "value" : "0126",
+        "value" : "0128",
         "info_text" : "The build number of the Snap pack to which the Snap belongs.",
         "sensitivity_level" : "public",
         "label_text" : "Snap-pack build-number",
@@ -222,7 +224,7 @@
       },
       "snap_pack_fqid" : {
         "ui_row_count" : 1,
-        "value" : "demosnapsdevelopment-snap-1-0126.zip",
+        "value" : "demosnapsdevelopment-snap-1-0128.zip",
         "info_text" : "The fully qualified id of Snap pack to which the Snap belongs.",
         "sensitivity_level" : "public",
         "label_text" : "Snap-pack fqid",
@@ -272,7 +274,7 @@
       },
       "snap_class_name" : {
         "ui_row_count" : 1,
-        "value" : "com.snaplogic.snaps.CurrencyConverter",
+        "value" : "com.snaplogic.snaps.DocGenerator",
         "info_text" : "The name of the Snap class.",
         "sensitivity_level" : "public",
         "label_text" : "Snap class name",
@@ -302,7 +304,7 @@
       },
       "class_fqid" : {
         "ui_row_count" : 2,
-        "value" : "com-snaplogic-snaps-currencyconverter_1-0126",
+        "value" : "com-snaplogic-snaps-docgenerator_1-0128",
         "info_text" : "The unique identifier of the Snap",
         "sensitivity_level" : "public",
         "label_text" : "Class FQID",
@@ -332,7 +334,7 @@
     "input" : {
       "view_map" : {
         "document" : {
-          "min_views" : 1,
+          "min_views" : 0,
           "max_views" : 1
         }
       }
@@ -370,12 +372,10 @@
         "priority_index" : 1010,
         "anchor" : false
       },
-      "inputFile" : {
-        "info_text" : "File containing foreign exchange rates",
-        "schema_awareness_type" : "accepts_schema",
-        "label_text" : "Exchange Rates File",
+      "count" : {
+        "info_text" : "Number of documents to create",
+        "label_text" : "count",
         "priority_index" : 10,
-        "display_type" : "file_browsing",
         "anchor" : false
       }
     }
@@ -385,16 +385,6 @@
     "settings" : {
       "execution_mode" : {
         "value" : "Validate & Execute"
-      }
-    },
-    "input" : {
-      "input0" : {
-        "view_type" : {
-          "value" : "document"
-        },
-        "label" : {
-          "value" : "input0"
-        }
       }
     },
     "output" : {

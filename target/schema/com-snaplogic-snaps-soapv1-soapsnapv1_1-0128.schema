@@ -1,5 +1,5 @@
 {
-  "id" : "com-snaplogic-snaps-propertytypes_1-0126",
+  "id" : "com-snaplogic-snaps-soapv1-soapsnapv1_1-0128",
   "type" : "object",
   "description" : "A schema for a snap",
   "description" : "The common schema for snaps.",
@@ -71,62 +71,28 @@
                 "$ref" : "com-snaplogic-snap_2#propertyextensions"
               }
             },
-            "password_prop" : {
+            "wsdl url" : {
               "required" : true,
               "extends" : {
                 "$ref" : "com-snaplogic-snap_2#propertyextensions"
               }
             },
-            "file_browser_prop" : {
+            "Service Name" : {
               "required" : true,
               "extends" : {
                 "$ref" : "com-snaplogic-snap_2#propertyextensions"
               }
             },
-            "parent_prop" : {
+            "Endpoint" : {
               "required" : true,
               "extends" : {
                 "$ref" : "com-snaplogic-snap_2#propertyextensions"
-              },
-              "properties" : {
-                "child_prop" : {
-                  "required" : true,
-                  "extends" : {
-                    "$ref" : "com-snaplogic-snap_2#propertyextensions"
-                  }
-                },
-                "child_file_browser_prop" : {
-                  "required" : true,
-                  "extends" : {
-                    "$ref" : "com-snaplogic-snap_2#propertyextensions"
-                  }
-                }
               }
             },
-            "table_prop" : {
+            "Operation" : {
               "required" : true,
               "extends" : {
                 "$ref" : "com-snaplogic-snap_2#propertyextensions"
-              },
-              "properties" : {
-                "header" : {
-                  "required" : true,
-                  "type" : "object",
-                  "properties" : {
-                    "column_file_browser_prop" : {
-                      "required" : true,
-                      "extends" : {
-                        "$ref" : "com-snaplogic-snap_2#propertyextensions"
-                      }
-                    },
-                    "column_prop" : {
-                      "required" : true,
-                      "extends" : {
-                        "$ref" : "com-snaplogic-snap_2#propertyextensions"
-                      }
-                    }
-                  }
-                }
               }
             }
           }
@@ -155,13 +121,12 @@
                 }
               }
             },
-            "password_prop" : {
+            "wsdl url" : {
               "extends" : {
                 "$ref" : "com-snaplogic-snap_2#instancepropertyextensions"
               },
               "properties" : {
                 "value" : {
-                  "default" : "abc",
                   "required" : true,
                   "format" : "",
                   "type" : "string"
@@ -169,103 +134,50 @@
               },
               "required" : true
             },
-            "file_browser_prop" : {
+            "Service Name" : {
               "extends" : {
                 "$ref" : "com-snaplogic-snap_2#instancepropertyextensions"
               },
               "properties" : {
                 "value" : {
                   "expression" : true,
-                  "default" : "abc",
                   "required" : true,
+                  "suggestable" : true,
                   "format" : "",
                   "type" : "string"
                 }
               },
               "required" : true
             },
-            "parent_prop" : {
-              "type" : "object",
-              "properties" : {
-                "value" : {
-                  "type" : "object",
-                  "required" : true,
-                  "format" : "",
-                  "additionalProperties" : false,
-                  "properties" : {
-                    "child_prop" : {
-                      "extends" : {
-                        "$ref" : "com-snaplogic-snap_2#instancepropertyextensions"
-                      },
-                      "properties" : {
-                        "value" : {
-                          "required" : true,
-                          "format" : "",
-                          "type" : "string"
-                        }
-                      },
-                      "required" : true
-                    },
-                    "child_file_browser_prop" : {
-                      "extends" : {
-                        "$ref" : "com-snaplogic-snap_2#instancepropertyextensions"
-                      },
-                      "properties" : {
-                        "value" : {
-                          "expression" : true,
-                          "required" : true,
-                          "format" : "",
-                          "type" : "string"
-                        }
-                      },
-                      "required" : true
-                    }
-                  }
-                }
-              },
-              "required" : true
-            },
-            "table_prop" : {
+            "Endpoint" : {
               "extends" : {
                 "$ref" : "com-snaplogic-snap_2#instancepropertyextensions"
               },
               "properties" : {
                 "value" : {
-                  "type" : "array",
-                  "items" : [ {
-                    "properties" : {
-                      "column_file_browser_prop" : {
-                        "extends" : {
-                          "$ref" : "com-snaplogic-snap_2#instancepropertyextensions"
-                        },
-                        "properties" : {
-                          "value" : {
-                            "expression" : true,
-                            "required" : true,
-                            "format" : "",
-                            "type" : "string"
-                          }
-                        },
-                        "required" : true
-                      },
-                      "column_prop" : {
-                        "extends" : {
-                          "$ref" : "com-snaplogic-snap_2#instancepropertyextensions"
-                        },
-                        "properties" : {
-                          "value" : {
-                            "required" : true,
-                            "format" : "",
-                            "type" : "string"
-                          }
-                        },
-                        "required" : true
-                      }
-                    }
-                  } ],
-                  "format" : ""
+                  "expression" : true,
+                  "required" : true,
+                  "suggestable" : true,
+                  "format" : "",
+                  "type" : "string"
                 }
-              }
+              },
+              "required" : true
+            },
+            "Operation" : {
+              "extends" : {
+                "$ref" : "com-snaplogic-snap_2#instancepropertyextensions"
+              },
+              "properties" : {
+                "value" : {
+                  "expression" : true,
+                  "required" : true,
+                  "suggestable" : true,
+                  "format" : "",
+                  "type" : "string"
+                }
+              },
+              "required" : true
             }
           },
           "required" : true
@@ -334,7 +246,7 @@
     "info" : {
       "title" : {
         "ui_row_count" : 1,
-        "value" : "Property Types",
+        "value" : "Soap Snap v1",
         "info_text" : "Class title shown for the Snap",
         "sensitivity_level" : "public",
         "label_text" : "Title",
@@ -344,14 +256,14 @@
       },
       "purpose" : {
         "ui_row_count" : 3,
-        "value" : "Demonstrates use of different property types",
+        "value" : "Soap Requests",
         "info_text" : "The description of the Snap",
         "sensitivity_level" : "public",
         "label_text" : "Purpose",
         "priority_index" : 40,
         "display_type" : "visible",
         "anchor" : false,
-        "doc_uri" : "http://yourdocslinkhere.com"
+        "doc_uri" : "https://docs-snaplogic.atlassian.net/wiki/display/SD/Soap%20Snap%20v1"
       },
       "snap_pack_version" : {
         "ui_row_count" : 1,
@@ -365,7 +277,7 @@
       },
       "snap_pack_build_number" : {
         "ui_row_count" : 1,
-        "value" : "0126",
+        "value" : "0128",
         "info_text" : "The build number of the Snap pack to which the Snap belongs.",
         "sensitivity_level" : "public",
         "label_text" : "Snap-pack build-number",
@@ -375,7 +287,7 @@
       },
       "snap_pack_fqid" : {
         "ui_row_count" : 1,
-        "value" : "demosnapsdevelopment-snap-1-0126.zip",
+        "value" : "demosnapsdevelopment-snap-1-0128.zip",
         "info_text" : "The fully qualified id of Snap pack to which the Snap belongs.",
         "sensitivity_level" : "public",
         "label_text" : "Snap-pack fqid",
@@ -425,7 +337,7 @@
       },
       "snap_class_name" : {
         "ui_row_count" : 1,
-        "value" : "com.snaplogic.snaps.PropertyTypes",
+        "value" : "com.snaplogic.snaps.soapv1.SoapSnapV1",
         "info_text" : "The name of the Snap class.",
         "sensitivity_level" : "public",
         "label_text" : "Snap class name",
@@ -445,7 +357,7 @@
       },
       "snap_author" : {
         "ui_row_count" : 2,
-        "value" : "Your Company Name",
+        "value" : "Baselinked",
         "info_text" : "Author of the Snap",
         "sensitivity_level" : "public",
         "label_text" : "Developer",
@@ -455,7 +367,7 @@
       },
       "class_fqid" : {
         "ui_row_count" : 2,
-        "value" : "com-snaplogic-snaps-propertytypes_1-0126",
+        "value" : "com-snaplogic-snaps-soapv1-soapsnapv1_1-0128",
         "info_text" : "The unique identifier of the Snap",
         "sensitivity_level" : "public",
         "label_text" : "Class FQID",
@@ -523,60 +435,32 @@
         "priority_index" : 1010,
         "anchor" : false
       },
-      "password_prop" : {
-        "info_text" : "password_prop",
-        "sensitivity_level" : "high",
-        "label_text" : "password_prop",
+      "wsdl url" : {
+        "info_text" : "Insert the WSDL URL",
+        "label_text" : "wsdl url",
         "priority_index" : 10,
-        "display_type" : "password",
         "anchor" : false
       },
-      "file_browser_prop" : {
-        "info_text" : "file_browser_prop",
-        "label_text" : "file_browser_prop",
+      "Service Name" : {
+        "info_text" : "Extract service name if needed",
+        "label_text" : "Service Name",
         "priority_index" : 20,
-        "display_type" : "file_browsing",
+        "display_type" : "suggestable",
         "anchor" : false
       },
-      "parent_prop" : {
-        "info_text" : "parent_prop",
-        "label_text" : "parent_prop",
+      "Endpoint" : {
+        "info_text" : "Select specific endpoint",
+        "label_text" : "Endpoint",
         "priority_index" : 30,
-        "anchor" : false,
-        "child_prop" : {
-          "info_text" : "child_prop",
-          "label_text" : "child_prop",
-          "priority_index" : 20,
-          "anchor" : false
-        },
-        "child_file_browser_prop" : {
-          "info_text" : "child_file_browser_prop",
-          "label_text" : "child_file_browser_prop",
-          "priority_index" : 10,
-          "display_type" : "file_browsing",
-          "anchor" : false
-        }
+        "display_type" : "suggestable",
+        "anchor" : false
       },
-      "table_prop" : {
-        "info_text" : "table_prop",
-        "label_text" : "table_prop",
+      "Operation" : {
+        "info_text" : "Select specific operation",
+        "label_text" : "Operation",
         "priority_index" : 40,
-        "anchor" : false,
-        "header" : {
-          "column_file_browser_prop" : {
-            "info_text" : "column_file_browser_prop",
-            "label_text" : "column_file_browser_prop",
-            "priority_index" : 10,
-            "display_type" : "file_browsing",
-            "anchor" : false
-          },
-          "column_prop" : {
-            "info_text" : "column_prop",
-            "label_text" : "column_prop",
-            "priority_index" : 20,
-            "anchor" : false
-          }
-        }
+        "display_type" : "suggestable",
+        "anchor" : false
       }
     }
   },
@@ -585,12 +469,6 @@
     "settings" : {
       "execution_mode" : {
         "value" : "Validate & Execute"
-      },
-      "password_prop" : {
-        "value" : "abc"
-      },
-      "file_browser_prop" : {
-        "value" : "abc"
       }
     },
     "output" : {

@@ -1,5 +1,5 @@
 {
-  "id" : "com-snaplogic-snaps-schemaexample_1-0126",
+  "id" : "com-snaplogic-snaps-suggest_1-0128",
   "type" : "object",
   "description" : "A schema for a snap",
   "description" : "The common schema for snaps.",
@@ -70,6 +70,18 @@
               "extends" : {
                 "$ref" : "com-snaplogic-snap_2#propertyextensions"
               }
+            },
+            "name" : {
+              "required" : true,
+              "extends" : {
+                "$ref" : "com-snaplogic-snap_2#propertyextensions"
+              }
+            },
+            "echo" : {
+              "required" : true,
+              "extends" : {
+                "$ref" : "com-snaplogic-snap_2#propertyextensions"
+              }
             }
           }
         }
@@ -92,6 +104,30 @@
                 "value" : {
                   "default" : "Validate & Execute",
                   "enum" : [ "Validate & Execute", "Execute only", "Disabled" ],
+                  "format" : "",
+                  "type" : "string"
+                }
+              }
+            },
+            "name" : {
+              "extends" : {
+                "$ref" : "com-snaplogic-snap_2#instancepropertyextensions"
+              },
+              "properties" : {
+                "value" : {
+                  "format" : "",
+                  "type" : "string"
+                }
+              }
+            },
+            "echo" : {
+              "extends" : {
+                "$ref" : "com-snaplogic-snap_2#instancepropertyextensions"
+              },
+              "properties" : {
+                "value" : {
+                  "expression" : true,
+                  "suggestable" : true,
                   "format" : "",
                   "type" : "string"
                 }
@@ -163,7 +199,7 @@
     "info" : {
       "title" : {
         "ui_row_count" : 1,
-        "value" : "View Schema",
+        "value" : "Suggest",
         "info_text" : "Class title shown for the Snap",
         "sensitivity_level" : "public",
         "label_text" : "Title",
@@ -173,7 +209,7 @@
       },
       "purpose" : {
         "ui_row_count" : 3,
-        "value" : "Demonstrates view schema definition",
+        "value" : "Demo suggest functionality.",
         "info_text" : "The description of the Snap",
         "sensitivity_level" : "public",
         "label_text" : "Purpose",
@@ -194,7 +230,7 @@
       },
       "snap_pack_build_number" : {
         "ui_row_count" : 1,
-        "value" : "0126",
+        "value" : "0128",
         "info_text" : "The build number of the Snap pack to which the Snap belongs.",
         "sensitivity_level" : "public",
         "label_text" : "Snap-pack build-number",
@@ -204,7 +240,7 @@
       },
       "snap_pack_fqid" : {
         "ui_row_count" : 1,
-        "value" : "demosnapsdevelopment-snap-1-0126.zip",
+        "value" : "demosnapsdevelopment-snap-1-0128.zip",
         "info_text" : "The fully qualified id of Snap pack to which the Snap belongs.",
         "sensitivity_level" : "public",
         "label_text" : "Snap-pack fqid",
@@ -254,7 +290,7 @@
       },
       "snap_class_name" : {
         "ui_row_count" : 1,
-        "value" : "com.snaplogic.snaps.SchemaExample",
+        "value" : "com.snaplogic.snaps.Suggest",
         "info_text" : "The name of the Snap class.",
         "sensitivity_level" : "public",
         "label_text" : "Snap class name",
@@ -284,7 +320,7 @@
       },
       "class_fqid" : {
         "ui_row_count" : 2,
-        "value" : "com-snaplogic-snaps-schemaexample_1-0126",
+        "value" : "com-snaplogic-snaps-suggest_1-0128",
         "info_text" : "The unique identifier of the Snap",
         "sensitivity_level" : "public",
         "label_text" : "Class FQID",
@@ -314,7 +350,7 @@
     "input" : {
       "view_map" : {
         "document" : {
-          "min_views" : 1,
+          "min_views" : 0,
           "max_views" : 1
         }
       }
@@ -339,17 +375,30 @@
         "info_text" : "Determines if the Snap should fail, continue (write to error view) or ignore errors",
         "sensitivity_level" : "public",
         "label_text" : "Error behavior",
-        "priority_index" : 10,
+        "priority_index" : 30,
         "display_type" : "visible",
         "anchor" : false
       }
     },
-    "category" : "transform",
+    "category" : "read",
     "settings" : {
       "execution_mode" : {
         "info_text" : "Controls whether or not a Snap executes",
         "label_text" : "Snap execution",
         "priority_index" : 1010,
+        "anchor" : false
+      },
+      "name" : {
+        "info_text" : "name",
+        "label_text" : "name",
+        "priority_index" : 10,
+        "anchor" : false
+      },
+      "echo" : {
+        "info_text" : "echo",
+        "label_text" : "echo",
+        "priority_index" : 20,
+        "display_type" : "suggestable",
         "anchor" : false
       }
     }
@@ -359,16 +408,6 @@
     "settings" : {
       "execution_mode" : {
         "value" : "Validate & Execute"
-      }
-    },
-    "input" : {
-      "input0" : {
-        "view_type" : {
-          "value" : "document"
-        },
-        "label" : {
-          "value" : "input0"
-        }
       }
     },
     "output" : {
