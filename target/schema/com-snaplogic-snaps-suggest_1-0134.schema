@@ -1,5 +1,5 @@
 {
-  "id" : "com-snaplogic-snaps-snapsv2-soapsnapv2_1-0128",
+  "id" : "com-snaplogic-snaps-suggest_1-0134",
   "type" : "object",
   "description" : "A schema for a snap",
   "description" : "The common schema for snaps.",
@@ -71,25 +71,13 @@
                 "$ref" : "com-snaplogic-snap_2#propertyextensions"
               }
             },
-            "wsdl url" : {
+            "name" : {
               "required" : true,
               "extends" : {
                 "$ref" : "com-snaplogic-snap_2#propertyextensions"
               }
             },
-            "Service Name" : {
-              "required" : true,
-              "extends" : {
-                "$ref" : "com-snaplogic-snap_2#propertyextensions"
-              }
-            },
-            "Endpoint" : {
-              "required" : true,
-              "extends" : {
-                "$ref" : "com-snaplogic-snap_2#propertyextensions"
-              }
-            },
-            "Operation" : {
+            "echo" : {
               "required" : true,
               "extends" : {
                 "$ref" : "com-snaplogic-snap_2#propertyextensions"
@@ -121,66 +109,31 @@
                 }
               }
             },
-            "wsdl url" : {
+            "name" : {
               "extends" : {
                 "$ref" : "com-snaplogic-snap_2#instancepropertyextensions"
               },
               "properties" : {
                 "value" : {
-                  "required" : true,
                   "format" : "",
                   "type" : "string"
                 }
-              },
-              "required" : true
+              }
             },
-            "Service Name" : {
+            "echo" : {
               "extends" : {
                 "$ref" : "com-snaplogic-snap_2#instancepropertyextensions"
               },
               "properties" : {
                 "value" : {
                   "expression" : true,
-                  "required" : true,
                   "suggestable" : true,
                   "format" : "",
                   "type" : "string"
                 }
-              },
-              "required" : true
-            },
-            "Endpoint" : {
-              "extends" : {
-                "$ref" : "com-snaplogic-snap_2#instancepropertyextensions"
-              },
-              "properties" : {
-                "value" : {
-                  "expression" : true,
-                  "required" : true,
-                  "suggestable" : true,
-                  "format" : "",
-                  "type" : "string"
-                }
-              },
-              "required" : true
-            },
-            "Operation" : {
-              "extends" : {
-                "$ref" : "com-snaplogic-snap_2#instancepropertyextensions"
-              },
-              "properties" : {
-                "value" : {
-                  "expression" : true,
-                  "required" : true,
-                  "suggestable" : true,
-                  "format" : "",
-                  "type" : "string"
-                }
-              },
-              "required" : true
+              }
             }
-          },
-          "required" : true
+          }
         },
         "error" : {
           "properties" : {
@@ -246,7 +199,7 @@
     "info" : {
       "title" : {
         "ui_row_count" : 1,
-        "value" : "Soap Snap v2",
+        "value" : "Suggest",
         "info_text" : "Class title shown for the Snap",
         "sensitivity_level" : "public",
         "label_text" : "Title",
@@ -256,14 +209,14 @@
       },
       "purpose" : {
         "ui_row_count" : 3,
-        "value" : "Soap Requests",
+        "value" : "Demo suggest functionality.",
         "info_text" : "The description of the Snap",
         "sensitivity_level" : "public",
         "label_text" : "Purpose",
         "priority_index" : 40,
         "display_type" : "visible",
         "anchor" : false,
-        "doc_uri" : "https://docs-snaplogic.atlassian.net/wiki/display/SD/Soap%20Snap%20v2"
+        "doc_uri" : "http://yourdocslinkhere.com"
       },
       "snap_pack_version" : {
         "ui_row_count" : 1,
@@ -277,7 +230,7 @@
       },
       "snap_pack_build_number" : {
         "ui_row_count" : 1,
-        "value" : "0128",
+        "value" : "0134",
         "info_text" : "The build number of the Snap pack to which the Snap belongs.",
         "sensitivity_level" : "public",
         "label_text" : "Snap-pack build-number",
@@ -287,7 +240,7 @@
       },
       "snap_pack_fqid" : {
         "ui_row_count" : 1,
-        "value" : "demosnapsdevelopment-snap-1-0128.zip",
+        "value" : "demosnapsdevelopment-snap-1-0134.zip",
         "info_text" : "The fully qualified id of Snap pack to which the Snap belongs.",
         "sensitivity_level" : "public",
         "label_text" : "Snap-pack fqid",
@@ -337,7 +290,7 @@
       },
       "snap_class_name" : {
         "ui_row_count" : 1,
-        "value" : "com.snaplogic.snaps.snapsv2.SoapSnapV2",
+        "value" : "com.snaplogic.snaps.Suggest",
         "info_text" : "The name of the Snap class.",
         "sensitivity_level" : "public",
         "label_text" : "Snap class name",
@@ -357,7 +310,7 @@
       },
       "snap_author" : {
         "ui_row_count" : 2,
-        "value" : "Baselinked",
+        "value" : "Your Company Name",
         "info_text" : "Author of the Snap",
         "sensitivity_level" : "public",
         "label_text" : "Developer",
@@ -367,7 +320,7 @@
       },
       "class_fqid" : {
         "ui_row_count" : 2,
-        "value" : "com-snaplogic-snaps-snapsv2-soapsnapv2_1-0128",
+        "value" : "com-snaplogic-snaps-suggest_1-0134",
         "info_text" : "The unique identifier of the Snap",
         "sensitivity_level" : "public",
         "label_text" : "Class FQID",
@@ -422,7 +375,7 @@
         "info_text" : "Determines if the Snap should fail, continue (write to error view) or ignore errors",
         "sensitivity_level" : "public",
         "label_text" : "Error behavior",
-        "priority_index" : 50,
+        "priority_index" : 30,
         "display_type" : "visible",
         "anchor" : false
       }
@@ -435,30 +388,16 @@
         "priority_index" : 1010,
         "anchor" : false
       },
-      "wsdl url" : {
-        "info_text" : "Insert the WSDL URL",
-        "label_text" : "wsdl url",
+      "name" : {
+        "info_text" : "name",
+        "label_text" : "name",
         "priority_index" : 10,
         "anchor" : false
       },
-      "Service Name" : {
-        "info_text" : "Extract service name if needed",
-        "label_text" : "Service Name",
+      "echo" : {
+        "info_text" : "echo",
+        "label_text" : "echo",
         "priority_index" : 20,
-        "display_type" : "suggestable",
-        "anchor" : false
-      },
-      "Endpoint" : {
-        "info_text" : "Select specific endpoint",
-        "label_text" : "Endpoint",
-        "priority_index" : 30,
-        "display_type" : "suggestable",
-        "anchor" : false
-      },
-      "Operation" : {
-        "info_text" : "Select specific operation",
-        "label_text" : "Operation",
-        "priority_index" : 40,
         "display_type" : "suggestable",
         "anchor" : false
       }

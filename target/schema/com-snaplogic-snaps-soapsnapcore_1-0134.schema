@@ -1,5 +1,5 @@
 {
-  "id" : "com-snaplogic-snaps-twoinputs_1-0128",
+  "id" : "com-snaplogic-snaps-soapsnapcore_1-0134",
   "type" : "object",
   "description" : "A schema for a snap",
   "description" : "The common schema for snaps.",
@@ -70,6 +70,30 @@
               "extends" : {
                 "$ref" : "com-snaplogic-snap_2#propertyextensions"
               }
+            },
+            "wsdl url" : {
+              "required" : true,
+              "extends" : {
+                "$ref" : "com-snaplogic-snap_2#propertyextensions"
+              }
+            },
+            "Service Name" : {
+              "required" : true,
+              "extends" : {
+                "$ref" : "com-snaplogic-snap_2#propertyextensions"
+              }
+            },
+            "Endpoint" : {
+              "required" : true,
+              "extends" : {
+                "$ref" : "com-snaplogic-snap_2#propertyextensions"
+              }
+            },
+            "Operation" : {
+              "required" : true,
+              "extends" : {
+                "$ref" : "com-snaplogic-snap_2#propertyextensions"
+              }
             }
           }
         }
@@ -96,8 +120,115 @@
                   "type" : "string"
                 }
               }
+            },
+            "wsdl url" : {
+              "extends" : {
+                "$ref" : "com-snaplogic-snap_2#instancepropertyextensions"
+              },
+              "properties" : {
+                "value" : {
+                  "required" : true,
+                  "format" : "",
+                  "type" : "string"
+                }
+              },
+              "required" : true
+            },
+            "Service Name" : {
+              "extends" : {
+                "$ref" : "com-snaplogic-snap_2#instancepropertyextensions"
+              },
+              "properties" : {
+                "value" : {
+                  "expression" : true,
+                  "required" : true,
+                  "suggestable" : true,
+                  "format" : "",
+                  "type" : "string"
+                }
+              },
+              "required" : true
+            },
+            "Endpoint" : {
+              "extends" : {
+                "$ref" : "com-snaplogic-snap_2#instancepropertyextensions"
+              },
+              "properties" : {
+                "value" : {
+                  "expression" : true,
+                  "required" : true,
+                  "suggestable" : true,
+                  "format" : "",
+                  "type" : "string"
+                }
+              },
+              "required" : true
+            },
+            "Operation" : {
+              "extends" : {
+                "$ref" : "com-snaplogic-snap_2#instancepropertyextensions"
+              },
+              "properties" : {
+                "value" : {
+                  "expression" : true,
+                  "required" : true,
+                  "suggestable" : true,
+                  "format" : "",
+                  "type" : "string"
+                }
+              },
+              "required" : true
             }
-          }
+          },
+          "required" : true
+        },
+        "error" : {
+          "properties" : {
+            "error0" : {
+              "required" : true,
+              "additionalProperties" : false,
+              "properties" : {
+                "view_type" : {
+                  "extends" : {
+                    "$ref" : "com-snaplogic-snap_2#instancepropertyextensions"
+                  },
+                  "properties" : {
+                    "value" : {
+                      "default" : "document",
+                      "format" : "",
+                      "type" : "string"
+                    }
+                  }
+                },
+                "label" : {
+                  "extends" : {
+                    "$ref" : "com-snaplogic-snap_2#instancepropertyextensions"
+                  },
+                  "properties" : {
+                    "value" : {
+                      "default" : "error0",
+                      "format" : "",
+                      "type" : "string"
+                    }
+                  }
+                }
+              }
+            },
+            "error_behavior" : {
+              "extends" : {
+                "$ref" : "com-snaplogic-snap_2#instancepropertyextensions"
+              },
+              "properties" : {
+                "value" : {
+                  "default" : "fail",
+                  "enum" : [ "fail", "continue", "ignore" ],
+                  "format" : "",
+                  "type" : "string"
+                }
+              }
+            }
+          },
+          "additionalProperties" : false
         }
       }
     }
@@ -115,7 +246,7 @@
     "info" : {
       "title" : {
         "ui_row_count" : 1,
-        "value" : "Two Inputs",
+        "value" : "Soap Snap Core",
         "info_text" : "Class title shown for the Snap",
         "sensitivity_level" : "public",
         "label_text" : "Title",
@@ -125,14 +256,14 @@
       },
       "purpose" : {
         "ui_row_count" : 3,
-        "value" : "Accepts two inputs (expected phone books, merges them)",
+        "value" : "Soap Requests",
         "info_text" : "The description of the Snap",
         "sensitivity_level" : "public",
         "label_text" : "Purpose",
         "priority_index" : 40,
         "display_type" : "visible",
         "anchor" : false,
-        "doc_uri" : "http://yourdocslinkhere.com"
+        "doc_uri" : "https://docs-snaplogic.atlassian.net/wiki/display/SD/Soap%20Snap%20Core"
       },
       "snap_pack_version" : {
         "ui_row_count" : 1,
@@ -146,7 +277,7 @@
       },
       "snap_pack_build_number" : {
         "ui_row_count" : 1,
-        "value" : "0128",
+        "value" : "0134",
         "info_text" : "The build number of the Snap pack to which the Snap belongs.",
         "sensitivity_level" : "public",
         "label_text" : "Snap-pack build-number",
@@ -156,7 +287,7 @@
       },
       "snap_pack_fqid" : {
         "ui_row_count" : 1,
-        "value" : "demosnapsdevelopment-snap-1-0128.zip",
+        "value" : "demosnapsdevelopment-snap-1-0134.zip",
         "info_text" : "The fully qualified id of Snap pack to which the Snap belongs.",
         "sensitivity_level" : "public",
         "label_text" : "Snap-pack fqid",
@@ -206,7 +337,7 @@
       },
       "snap_class_name" : {
         "ui_row_count" : 1,
-        "value" : "com.snaplogic.snaps.TwoInputs",
+        "value" : "com.snaplogic.snaps.SoapSnapCore",
         "info_text" : "The name of the Snap class.",
         "sensitivity_level" : "public",
         "label_text" : "Snap class name",
@@ -226,7 +357,7 @@
       },
       "snap_author" : {
         "ui_row_count" : 2,
-        "value" : "Your Company Name",
+        "value" : "Baselinked",
         "info_text" : "Author of the Snap",
         "sensitivity_level" : "public",
         "label_text" : "Developer",
@@ -236,7 +367,7 @@
       },
       "class_fqid" : {
         "ui_row_count" : 2,
-        "value" : "com-snaplogic-snaps-twoinputs_1-0128",
+        "value" : "com-snaplogic-snaps-soapsnapcore_1-0134",
         "info_text" : "The unique identifier of the Snap",
         "sensitivity_level" : "public",
         "label_text" : "Class FQID",
@@ -266,8 +397,8 @@
     "input" : {
       "view_map" : {
         "document" : {
-          "min_views" : 2,
-          "max_views" : 2
+          "min_views" : 0,
+          "max_views" : 1
         }
       }
     },
@@ -282,7 +413,7 @@
     "error" : {
       "view_map" : {
         "document" : {
-          "min_views" : 0,
+          "min_views" : 1,
           "max_views" : 1
         }
       },
@@ -291,7 +422,7 @@
         "info_text" : "Determines if the Snap should fail, continue (write to error view) or ignore errors",
         "sensitivity_level" : "public",
         "label_text" : "Error behavior",
-        "priority_index" : 10,
+        "priority_index" : 50,
         "display_type" : "visible",
         "anchor" : false
       }
@@ -303,6 +434,33 @@
         "label_text" : "Snap execution",
         "priority_index" : 1010,
         "anchor" : false
+      },
+      "wsdl url" : {
+        "info_text" : "Insert the wsdl url",
+        "label_text" : "wsdl url",
+        "priority_index" : 10,
+        "anchor" : false
+      },
+      "Service Name" : {
+        "info_text" : "Extract service name if needed",
+        "label_text" : "Service Name",
+        "priority_index" : 20,
+        "display_type" : "suggestable",
+        "anchor" : false
+      },
+      "Endpoint" : {
+        "info_text" : "Select specific endpoint",
+        "label_text" : "Endpoint",
+        "priority_index" : 30,
+        "display_type" : "suggestable",
+        "anchor" : false
+      },
+      "Operation" : {
+        "info_text" : "Select specific operation",
+        "label_text" : "Operation",
+        "priority_index" : 40,
+        "display_type" : "suggestable",
+        "anchor" : false
       }
     }
   },
@@ -311,24 +469,6 @@
     "settings" : {
       "execution_mode" : {
         "value" : "Validate & Execute"
-      }
-    },
-    "input" : {
-      "input0" : {
-        "view_type" : {
-          "value" : "document"
-        },
-        "label" : {
-          "value" : "input0"
-        }
-      },
-      "input1" : {
-        "view_type" : {
-          "value" : "document"
-        },
-        "label" : {
-          "value" : "input1"
-        }
       }
     },
     "output" : {
@@ -342,6 +482,14 @@
       }
     },
     "error" : {
+      "error0" : {
+        "view_type" : {
+          "value" : "document"
+        },
+        "label" : {
+          "value" : "error0"
+        }
+      },
       "error_behavior" : {
         "value" : "fail"
       }

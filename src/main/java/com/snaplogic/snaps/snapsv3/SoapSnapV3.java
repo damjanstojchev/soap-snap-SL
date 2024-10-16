@@ -7,17 +7,7 @@ import com.snaplogic.api.Snap;
 import com.snaplogic.common.properties.builders.PropertyBuilder;
 import com.snaplogic.snap.api.*;
 import com.snaplogic.snap.api.capabilities.*;
-import org.apache.http.auth.AuthScope;
-import org.apache.http.auth.UsernamePasswordCredentials;
-import org.apache.http.client.methods.CloseableHttpResponse;
-import org.apache.http.client.methods.HttpPost;
-import org.apache.http.entity.StringEntity;
-import org.apache.http.impl.client.BasicCredentialsProvider;
-import org.apache.http.impl.client.CloseableHttpClient;
-import org.apache.http.impl.client.HttpClients;
-import org.apache.http.util.EntityUtils;
 import org.json.JSONObject;
-import org.json.XML;
 import org.w3c.dom.Document;
 import org.w3c.dom.NodeList;
 
@@ -41,6 +31,7 @@ public class SoapSnapV3 implements Snap {
     private static String serviceName;
     private static String endPoint;
     private static String operation;
+    private static String envelope;
 
     private static final XmlHandlerImpl xmlHandler = new XmlHandlerImpl();
 
@@ -112,11 +103,12 @@ public class SoapSnapV3 implements Snap {
             serviceName = propertyValues.get(SERVICE_NAME);
             operation = propertyValues.get(OPERATION);
             endPoint = propertyValues.get(ENDPOINT);
+            envelope = propertyValues.get(ENVELOPE);
 
             Document document = xmlHandler.loadWsdl(wsdlUrl);
-            List<String> x = xmlHandler.extractSpecificOperations(document, serviceName);
+            List<String> operation = xmlHandler.extractSpecificOperations(document, serviceName);
 
-            if (x == null) {
+            if (operation == null) {
                 throw new SnapDataException("Selected operation '" + operation + "' not found in the WSDL document.");
             }
 
@@ -127,11 +119,14 @@ public class SoapSnapV3 implements Snap {
                 uris.add(uri);
             }
 
-            Map<String, Object> output = new HashMap<>();
+            JSONObject soapResponse = xmlHandler.executeSoapRequestWithAuth(envelope, endPoint);
+
+            Map<String, Object> output = new LinkedHashMap<>();
             output.put("Selected Operation", operation);
             output.put("Extracted URIs", uris);
+            output.put("Envelope", soapResponse.toMap());
 
-            //outputViews.write(documentUtility.newDocument(output));
+            outputViews.write(documentUtility.newDocument(output));
 
         } catch (Exception e) {
             throw new SnapDataException(e, "The operation is null or non-existed " + e.getMessage());
@@ -140,79 +135,55 @@ public class SoapSnapV3 implements Snap {
 
     @Override
     public void execute() throws ExecutionException, SnapDataException {
-         BasicCredentialsProvider credsProvider;
-         CloseableHttpClient httpClient;
-         HttpPost httpPost;
-         String soapEnvelope;
-         StringEntity entity;
-         CloseableHttpResponse response;
-         String responseString;
-        int statusCode = 0;
-
-        try {
-            credsProvider = new BasicCredentialsProvider();
-            credsProvider.setCredentials(
-                    new AuthScope(AuthScope.ANY_HOST, AuthScope.ANY_PORT),
-                    new UsernamePasswordCredentials("TEST.IMP1", "fusioN@123")
-            );
-            httpClient = HttpClients.custom()
-                    .setDefaultCredentialsProvider(credsProvider)
-                    .build();
-
-            httpPost = new HttpPost(endPoint);
-
-            soapEnvelope = "<?xml version=\"1.0\" encoding=\"UTF-8\"?>"
-                    + "<soap:Envelope xmlns:soap=\"http://www.w3.org/2003/05/soap-envelope\""
-                    + " xmlns:pub=\"http://xmlns.oracle.com/oxp/service/PublicReportService\">"
-                    + "    <soap:Header/>"
-                    + "    <soap:Body>"
-                    + "        <pub:runReport>"
-                    + "            <pub:reportRequest>"
-                    + "                <pub:attributeFormat>csv</pub:attributeFormat>"
-                    + "                <pub:parameterNameValues>"
-                    + "                    <pub:item>"
-                    + "                        <pub:name>pPERSON_NUMBER</pub:name>"
-                    + "                        <pub:values>"
-                    + "                            <pub:item>7</pub:item>"
-                    + "                        </pub:values>"
-                    + "                    </pub:item>"
-                    + "                </pub:parameterNameValues>"
-                    + "                <pub:reportAbsolutePath>/Custom/Person Details/Person Detail Report.xdo</pub:reportAbsolutePath>"
-                    + "                <pub:sizeOfDataChunkDownload>-1</pub:sizeOfDataChunkDownload>"
-                    + "            </pub:reportRequest>"
-                    + "            <pub:appParams>?</pub:appParams>"
-                    + "        </pub:runReport>"
-                    + "    </soap:Body>"
-                    + "</soap:Envelope>";
-
-            entity = new StringEntity(soapEnvelope, "UTF-8");
-            httpPost.setEntity(entity);
-            httpPost.setHeader("Content-Type", "application/soap+xml");
-
-            response = httpClient.execute(httpPost);
-            statusCode = response.getStatusLine().getStatusCode();
-            System.out.println("Response Status Code: " + statusCode);
-
-            if (statusCode == 200) {
-                responseString = EntityUtils.toString(response.getEntity());
-
-                JSONObject jsonResponse = XML.toJSONObject(responseString);
-
-                Map<String, Object> data = new LinkedHashMap<>();
-                data.put("status_code", String.valueOf(statusCode));
-                data.put("response", jsonResponse.toMap());
-                outputViews.write(documentUtility.newDocument(data));
-                //outputViews.write(documentUtility.newDocument("AAAAAAAAAAAAAAAAAAAAA"));
-
-            } else {
-                System.out.println("Failed to get a valid response. Status Code: " + statusCode);
-            }
-            httpClient.close();
-
-        } catch (Exception e) {
-            e.printStackTrace();
-            throw new ExecutionException("Error test123");
-        }
+//         BasicCredentialsProvider credsProvider;
+//         CloseableHttpClient httpClient;
+//         HttpPost httpPost;
+//         String soapEnvelope;
+//         StringEntity entity;
+//         CloseableHttpResponse response;
+//         String responseString;
+//        int statusCode = 0;
+//
+//        try {
+//            credsProvider = new BasicCredentialsProvider();
+//            credsProvider.setCredentials(
+//                    new AuthScope(AuthScope.ANY_HOST, AuthScope.ANY_PORT),
+//                    new UsernamePasswordCredentials("TEST.IMP1", "welcome123")
+//            );
+//            httpClient = HttpClients.custom()
+//                    .setDefaultCredentialsProvider(credsProvider)
+//                    .build();
+//
+//
+//            httpPost = new HttpPost(endPoint);
+//
+//            entity = new StringEntity(soapEnvelope, "UTF-8");
+//            httpPost.setEntity(entity);
+//            httpPost.setHeader("Content-Type", "application/soap+xml");
+//
+//            response = httpClient.execute(httpPost);
+//            statusCode = response.getStatusLine().getStatusCode();
+//            System.out.println("Response Status Code: " + statusCode);
+//
+//            if (statusCode == 200) {
+//                responseString = EntityUtils.toString(response.getEntity());
+//
+//                JSONObject jsonResponse = XML.toJSONObject(responseString);
+//
+//                Map<String, Object> data = new LinkedHashMap<>();
+//                data.put("status_code", String.valueOf(statusCode));
+//                data.put("response", jsonResponse.toMap());
+//                outputViews.write(documentUtility.newDocument(data));
+//
+//            } else {
+//                System.out.println("Failed to get a valid response. Status Code: " + statusCode);
+//            }
+//            httpClient.close();
+//
+//        } catch (Exception e) {
+//            e.printStackTrace();
+//            throw new ExecutionException(e, "Error during SOAP request execution");
+//        }
     }
 
     @Override
