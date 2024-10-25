@@ -122,8 +122,8 @@ public class SoapSnapV3 implements Snap {
             JSONObject soapResponse = xmlHandler.executeSoapRequestWithAuth(envelope, endPoint);
 
             Map<String, Object> output = new LinkedHashMap<>();
-            output.put("Selected Operation", operation);
-            output.put("Extracted URIs", uris);
+            //output.put("Selected Operation", operation);
+            //output.put("Extracted URIs", uris);
             output.put("Envelope", soapResponse.toMap());
 
             outputViews.write(documentUtility.newDocument(output));
